@@ -1,0 +1,18 @@
+services:
+  auditor:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: h2-hpack-audit:local
+    # Default demo: the host file named by CAPTURE_PATH is mounted read-only.
+    # CAPTURE_PATH may be absolute or relative to this Compose directory.
+    # DISCARD_STREAMS is a comma-separated list such as "3,7".
+    command:
+      - /input/capture.bin
+      - --discard-stream
+      - ${DISCARD_STREAMS:-3}
+    volumes:
+      - ./samples:/samples:ro
+      - ${CAPTURE_PATH:-./samples/filtered-shared-hpack.bin}:/input/capture.bin:ro
+    stdin_open: false
+    tty: false

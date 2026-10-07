@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "h2-hpack-audit"
+version = "0.1.0"
+description = "Stateful HTTP/2 HEADERS capture auditor that advances HPACK for filtered blocks"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = ["hpack==4.1.0"]
+
+[project.scripts]
+h2-hpack-audit = "h2_audit.cli:main"
+
+[tool.setuptools]
+packages = ["h2_audit"]
