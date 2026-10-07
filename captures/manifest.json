@@ -1,0 +1,27 @@
+{
+  "demo-interleaved.bin": {
+    "description": "streams 1,3,5; stream 3's dropped block feeds the shared table that stream 5 references by index",
+    "suggested_args": [
+      "--drop-streams",
+      "3"
+    ]
+  },
+  "demo-eviction.bin": {
+    "description": "256-byte table eviction; survivors indexed, evicted entry re-sent literally",
+    "suggested_args": [
+      "--verbose"
+    ]
+  },
+  "demo-fragmented.bin": {
+    "description": "header block split over HEADERS + 2 CONTINUATION, with padding and priority",
+    "suggested_args": []
+  },
+  "demo-too-many-fields.bin": {
+    "description": "70 fields on stream 1: list rejected, connection continues",
+    "suggested_args": []
+  },
+  "demo-bad-huffman.bin": {
+    "description": "bad Huffman padding: connection error, exit 2",
+    "suggested_args": []
+  }
+}

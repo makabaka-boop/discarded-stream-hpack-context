@@ -1,0 +1,21 @@
+name: h2audit
+
+# The tool container mounts the input captures read-only from ./captures.
+#
+#   docker compose build
+#   docker compose run --rm auditor /captures/your-capture.bin --drop-streams 3,7
+#   docker compose up auditor                 # runs the demo command below
+#   docker compose --profile test run --rm tests
+#
+services:
+  auditor:
+    build: .
+    image: h2audit:latest
+    volumes:
+      - ./captures:/captures:ro
+    command: ["/captures/demo-interleaved.bin", "--drop-streams", "3"]
+
+  tests:
+    build: .
+    profiles: ["test"]
+    entrypoint: ["python3", "/app/tests/test_h2audit.py"]
